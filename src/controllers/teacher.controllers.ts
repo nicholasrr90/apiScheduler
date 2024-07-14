@@ -27,4 +27,25 @@ export class TeacherControllers {
       return res.status(500).json({ error: "Internal server error" });
     }
   }
+
+getOneTeacher = async (req: Request, res: Response) => {
+  try {
+    const teacherService = new TeacherService();
+    const { id } = req.params;
+    const response = await teacherService.listOneTeacher(Number(id));
+    return res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+delete(req: Request, res: Response) {
+  const teacherService = new TeacherService();
+  const { id } = req.params;
+  teacherService.delete(Number(id));
+  return res.status(204).json();
+}
+
+
 }

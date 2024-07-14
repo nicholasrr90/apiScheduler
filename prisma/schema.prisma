@@ -9,7 +9,7 @@ generator client {
 }
 
 model teacher {
-  id Int @id @default(autoincrement())
-  name String
-  schedule     String
+  id       Int      @id @default(autoincrement())
+  name     String
+  schedule Boolean[]
 }
