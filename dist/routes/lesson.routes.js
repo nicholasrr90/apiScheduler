@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { LessonControllers } from "../controllers/lesson.controllers.js";
+import { LessonControllers } from "../controllers/lesson.controllers";
 export const lessonRoutes = Router();
 const lessonControllers = new LessonControllers();
 lessonRoutes.post("/lesson", lessonControllers.create);

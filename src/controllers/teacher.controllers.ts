@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 import { TeacherService } from "../services/teacher.services";
 import { teacherCreateSchema } from "../schemas/teacher.schemas"; // Supondo que você tenha um esquema para validação
+import { ITeacherCreate } from "../interfaces/teacher.interface";
 
 export class TeacherControllers {
   
   create = async (req: Request, res: Response) => {
     try {
       // Validação de dados
-      const validatedData = teacherCreateSchema.parse(req.body);
+      const validatedData: ITeacherCreate = req.body;
       const teacherService = new TeacherService();
       const response = await teacherService.create(validatedData);
       return res.status(201).json(response);

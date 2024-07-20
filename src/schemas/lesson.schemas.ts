@@ -5,7 +5,8 @@ const lessonSchema = z.object({
     name: z.string().min(3),
 });
 
-const lessonCreateSchema = lessonSchema.omit({ id: true });
-
+const lessonCreateSchema = z.object({
+    name: z.string().min(3).nonempty(),
+});
 
 export { lessonSchema, lessonCreateSchema };

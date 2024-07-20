@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { LessonService } from "../services/lesson.services";
-import { lessonCreateSchema } from "../schemas/lesson.schemas"; // Supondo que você tenha um esquema para validação
+import { lessonCreateSchema } from "../schemas/lesson.schemas"; 
+import { ILessonCreate } from "../interfaces/lesson.interface";
 
 export class LessonControllers {
   create = async (req: Request, res: Response) => {
     try {
-      const validatedData = lessonCreateSchema.parse(req.body);
+      const validatedData: ILessonCreate = req.body;
       const lessonService = new LessonService();
       const response = await lessonService.create(validatedData);
       return res.status(201).json(response);
