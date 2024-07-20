@@ -1,34 +1,26 @@
 {
   "name": "odios",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/App.js",
   "type": "module",
   "scripts": {
-    "dev": "dotenv -e .env.dev -- tsnd --cls --rs --respawn src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate:dev": "dotenv -e .env.dev -- npx prisma migrate dev",
-  "build": "tsc",
-  "start": "node dist/index.js"
+    "build": "tsc",
+    "start": "node dist/App.js",
+    "dev": "node src/App.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@prisma/client": "^5.16.2",
-    "dot": "^1.1.3",
-    "dotenv": "^16.4.5",
-    "env": "^0.0.2",
-    "express": "^4.19.2",
-    "prisma": "^5.16.2",
-    "zod": "^3.23.8",
-    "cors": "^2.8.5"
+    "@prisma/client": "^5.17.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "prisma": "^5.17.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.14.10",
-    "dotenv-cli": "^7.4.2",
-    "ts-node-dev": "^2.0.0",
+    "@types/cors": "^2.8.5",
+    "@types/express": "^4.17.0",
+    "@types/node": "^14.0.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.16.2",
     "typescript": "^5.5.3"
   }
 }

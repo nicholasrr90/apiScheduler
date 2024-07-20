@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,16 +7,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.LessonControllers = void 0;
-const lesson_services_1 = require("../services/lesson.services");
-const lesson_schemas_1 = require("../schemas/lesson.schemas"); // Supondo que você tenha um esquema para validação
-class LessonControllers {
+import { LessonService } from "../services/lesson.services.js";
+import { lessonCreateSchema } from "../schemas/lesson.schemas.js"; // Supondo que você tenha um esquema para validação
+export class LessonControllers {
     constructor() {
         this.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const validatedData = lesson_schemas_1.lessonCreateSchema.parse(req.body);
-                const lessonService = new lesson_services_1.LessonService();
+                const validatedData = lessonCreateSchema.parse(req.body);
+                const lessonService = new LessonService();
                 const response = yield lessonService.create(validatedData);
                 return res.status(201).json(response);
             }
@@ -28,7 +25,7 @@ class LessonControllers {
         });
         this.getLessons = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const lessonService = new lesson_services_1.LessonService();
+                const lessonService = new LessonService();
                 const response = yield lessonService.list();
                 return res.status(200).json(response);
             }
@@ -39,7 +36,7 @@ class LessonControllers {
         });
         this.getOneLesson = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const lessonService = new lesson_services_1.LessonService();
+                const lessonService = new LessonService();
                 const { id } = req.params;
                 const response = yield lessonService.listOneLesson(Number(id));
                 return res.status(200).json(response);
@@ -51,10 +48,9 @@ class LessonControllers {
         });
     }
     delete(req, res) {
-        const lessonService = new lesson_services_1.LessonService();
+        const lessonService = new LessonService();
         const { id } = req.params;
         lessonService.delete(Number(id));
         return res.status(204).json();
     }
 }
-exports.LessonControllers = LessonControllers;
