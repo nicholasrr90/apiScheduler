@@ -1,13 +1,16 @@
 {
   "name": "odios",
   "version": "1.0.0",
-  "main": "dist/App.js",
-  "type": "module",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/App.js",
-    "dev": "node src/App.ts"
+    "start": "node dist/api/index.js",
+    "dev": "ts-node ./api/index.ts"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
     "@prisma/client": "^5.17.0",
     "cors": "^2.8.5",

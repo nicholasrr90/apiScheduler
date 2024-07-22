@@ -1,20 +1,21 @@
-// index.js
-const express = require('express')
+import express from 'express';
+import cors from 'cors';
 
-const app = express()
-const PORT = 4000
+const app = express();
+const port = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`API listening on PORT ${PORT} `)
-})
+app.use(cors());
+app.use(express.json());
 
+
+// Definir rotas
 app.get('/', (req, res) => {
-  res.send('Hey this is my API running 🥳')
-})
+  res.send({ message: 'DEU CERTO CARAIO!' });
+});
 
-app.get('/about', (req, res) => {
-  res.send('This is my about route..... ')
-})
+// Iniciar o servidor
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
-// Export the Express API
-module.exports = app
+export default app;
