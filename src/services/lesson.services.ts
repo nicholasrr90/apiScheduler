@@ -1,4 +1,4 @@
-import { prisma } from "../database/prisma.ts";
+import { prisma } from "../database/prisma";
 import { ILesson, ILessonCreate } from "../interfaces/lesson.interface";
 import { lessonSchema, lessonCreateSchema } from "../schemas/lesson.schemas";
 
