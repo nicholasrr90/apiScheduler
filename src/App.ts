@@ -12,8 +12,5 @@ app.get('/', (req, res) => {
 
 app.use(cors());
 
-app.use(json());
-app.use("/", teacherRoutes);
-app.use("/", studentRoutes);
-app.use("/", lessonRoutes);
+
 
