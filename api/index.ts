@@ -1,35 +1,58 @@
-import express, { Request, Response, NextFunction, ErrorRequestHandler } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import { teacherRoutes } from "../src/routes/teacher.routes";
 import { studentRoutes } from "../src/routes/student.routes";
 import { lessonRoutes } from "../src/routes/lesson.routes";
+import helmet from "helmet";
+import morgan from "morgan";
+import winston from "winston";
+import {createLogger} from "../src/utils/logger"
+import {errorHandler} from "../src/middlewares/errorHandler"
 
+import expressWinston from "express-winston";
+
+const logger = createLogger("api-service");
+
+
+// Configurações de ambiente
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware para segurança
+app.use(helmet());
+
+// Middleware para CORS
 app.use(cors());
+
+// Middleware para JSON
 app.use(express.json());
 
-// Define routes
-app.get("/", (req: Request, res: Response) => {
-  res.send({ message: "teste github" });
-});
+// Middleware de logging
+app.use(morgan('combined'));
 
+
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple(),
+  }));
+}
+
+app.use(expressWinston.logger({
+  winstonInstance: logger,
+}));
+
+// Rotas
 app.use("/teacher", teacherRoutes);
 app.use("/student", studentRoutes);
 app.use("/lesson", lessonRoutes);
 
-// Error handling middleware
-const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send({ error: 'Something went wrong!' });
-};
-
+// Adiciona o middleware de tratamento de erros no final da cadeia de middlewares
 app.use(errorHandler);
 
-// Start the server
+
+// Inicialização do servidor
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  logger.info(`Server is running on port ${port}`);
 });
 
 export default app;

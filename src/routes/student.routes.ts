@@ -6,9 +6,9 @@ export const studentRoutes = Router();
 
 const studentControllers = new StudentControllers();
 
-studentRoutes.post("/student", studentControllers.create);
-studentRoutes.get("/student", studentControllers.getStudents);
-studentRoutes.get("/student/:id", studentControllers.getOneStudent);
-studentRoutes.delete("/student/:id",  studentControllers.delete);
+studentRoutes.post("/", studentControllers.create);
+studentRoutes.get("/", studentControllers.getStudents);
+studentRoutes.get("/:id", studentControllers.getOneStudent);
+studentRoutes.delete("/:id",  studentControllers.delete);
 
 

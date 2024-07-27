@@ -6,9 +6,9 @@ export const lessonRoutes = Router();
 
 const lessonControllers = new LessonControllers();
 
-lessonRoutes.post("/lesson", lessonControllers.create);
-lessonRoutes.get("/lesson", lessonControllers.getLessons);
-lessonRoutes.get("/lesson/:id", lessonControllers.getOneLesson);
-lessonRoutes.delete("/lesson/:id",  lessonControllers.delete);
+lessonRoutes.post("/", lessonControllers.create);
+lessonRoutes.get("/", lessonControllers.getLessons);
+lessonRoutes.get("/:id", lessonControllers.getOneLesson);
+lessonRoutes.delete("/:id",  lessonControllers.delete);
 
 

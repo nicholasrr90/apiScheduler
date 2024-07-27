@@ -1,12 +1,7 @@
 import { z } from "zod";
-
 import { teacherSchema, teacherCreateSchema } from "../schemas/teacher.schemas";
 
 type ITeacher = z.infer<typeof teacherSchema>;
-type ITeacherCreate = {
-    name: string
-    schedule: []
-}
+type ITeacherCreate = z.infer<typeof teacherCreateSchema>;
 
-export type { ITeacher,  ITeacherCreate};
-
+export type { ITeacher, ITeacherCreate };
